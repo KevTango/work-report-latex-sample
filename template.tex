@@ -3,14 +3,23 @@
 \usepackage{lipsum}
 \usepackage[hmargin=2cm,vmargin=2.54cm]{geometry} %2cm margins
 \usepackage[document]{ragged2e} %left justified
-\usepackage{hyperref}
 \usepackage{parskip} %newlines = paragraphs
+
+%Added packages
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
 % packages for references
 \usepackage{cite}
 \usepackage{url}
 
-\renewcommand*\thesection{\arabic{section}.0}
+\renewcommand*\thesection{\arabic{section}}
 \renewcommand*\thesubsection{\arabic{section}.\arabic{subsection}}
 
 \renewcommand{\familydefault}{\sfdefault} %Sans serif font - default Computer Modern Sans Serif
@@ -22,9 +31,10 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \linespread{1.15}
 
-%Start new sections on a odd numbered page
+%Start new sections on a new page
 \let\oldsection\section
-\def\section{\cleardoublepage\oldsection}
+%\def\section{\cleardoublepage\oldsection}
+\def\section{\clearpage\oldsection}
 
 \begin{document}
 
@@ -33,13 +43,10 @@
 %Blank page after title page
 \pagenumbering{gobble} % Turn off page numbering temporarily
 \thispagestyle{plain} % Skip any headers
-\clearpage\mbox{}\clearpage 
 
 %Turn page numbering back on
 \pagenumbering{roman}
-\setcounter{page}{3}
-
-
+\setcounter{page}{2}
 
 %-----------------------------------%
 % SUMMARY
@@ -48,19 +55,23 @@
 %rename abstract to summary
 \renewcommand{\abstractname}{Summary}
 \begin{abstract}
-A brief summary (no more than 300 words) of the whole report; nature of organisation, type of work done, skills learned, conclusions drawn.
 
+\addcontentsline{toc}{section}{Abstract}
+
+A brief summary (no more than 300 words) of the whole report; nature of organisation, type of work done, skills learned, conclusions drawn.
 \lipsum[1-2]
+
 \end{abstract}
 
 %-----------------------------------%
 % ACKNOWLEDGEMENTS
 %-----------------------------------%
 \section*{Acknowledgements}
-To thank the people who have given you help in your work.
 
+\addcontentsline{toc}{section}{Acknowledgements}
+
+To thank the people who have assisted you in your work and made an impact on your overall work experience.
 \lipsum[1-2]
-
 
 %-----------------------------------%
 % TABLE OF CONTENTS
@@ -69,78 +80,101 @@ To thank the people who have given you help in your work.
 %rename table of contents (before it was just Contents)
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
+\addcontentsline{toc}{section}{Table of Contents}
 \listoffigures
-\listoftables\cleardoublepage
-
+\addcontentsline{toc}{section}{List of Figures}
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+\clearpage
 
 %restart page numbering and change to numbers
 \setcounter{page}{1}
 \pagenumbering{arabic}
-
 
 %-----------------------------------%
 % INTRODUCTION
 %-----------------------------------%
 \section{Introduction}
 \label{sec:introduction}
-Outline the nature of the enterprise and/or products of the employer.
-\lipsum[1-2]
 
+This section should be an overview of the overall report, and include a brief introduction to the company, your role during the period which you've worked, the work you've undertaken and what you learned out of the entire experience.
+\lipsum[1-2]
 
 %-----------------------------------%
 % EARLY SECTIONS
 %-----------------------------------%
-\section{!Early Sections1!}
-\label{sec:earlysection}
-These sections could include information on:
+\section{Early Sections}
+\label{sec:earlysections}
 
-Layout of works or plant.
-Staff organisation structure and number of employees engaged in various work.
-General comments on buildings, plant layout, technical facilities and amenities for staff.
-\lipsum[1-2]
+These appropriately titled sections could include information on:
 
-\subsection{!Early SubSection1!}
+\begin{itemize}
+\item Layout of workplace or plant
+\item Staff organisation structure and number of employees engaged in various work
+\item General comments on buildings, plant layout, technical facilities and amenities for staff
+\end{itemize}
 \lipsum[1-2]
 
 %-----------------------------------%
 % CENTRAL SECTION
 %-----------------------------------%
-\section{!Central Section!}
-\label{sec:centralsection}
-In this section you should provide a full description of the work you undertook and any other activities observed.
-\lipsum[1-2]
+\section{Central Sections}
+\label{sec:centralsections}
 
-\subsection{!Central SubSection1!}
+Appropriate titles should be used for this section. You should provide a full description of the work you undertook and any other activities observed.
 \lipsum[1-2]
-
-\subsection{!Central SubSection2!}
-\lipsum[1-2]
-
 
 %-----------------------------------%
 % REFLECTIVE APPRAISAL
 %-----------------------------------%
 \section{Reflective Appraisal}
 \label{sec:reflectiveappraisal}
-In this section you should critically appraise or evaluate your learning/knowledge gained within the practical work experience. This could include
-your impressions about the organisation and its performance. It would also be appropriate to comment on the skills you have developed and the lessons learnt in relation to professional engineering practice.
-\lipsum[1-2]
 
+In this section you should critically appraise or evaluate your learning/knowledge gained within the practical work experience. This could include your impressions about the organisation and its performance. It would also be appropriate to comment on the skills you have developed and the lessons learnt in relation to professional engineering practice.
+
+Please note that your reflective appraisal must be at least one page in length. 
+\lipsum[1-2]
 
 %-----------------------------------%
 % CONCLUSIONS
 %-----------------------------------%
 \section{Conclusions}
 \label{sec:conclusions}
-Summary list of conclusions drawn, skills learned.
+
+Summary list of conclusions drawn, skills learned. Conclusions should be drawn on your entire work experience, and not any particular project(s) carried out.
 \lipsum[1-2]
 
 %Uncomment for bibliography
-%\bibliographystyle{IEEEtran}
-%\bibliography{bib-file-name}
+%\renewcommand{\refname}{Bibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
 
 %Uncomment for appendix
-%\appendix
-%\section{!Appendix Name!}
+\appendix
 
+%Change figure and table numbering to the alphabet
+\renewcommand*\thesubsection{\Alph{section}.\arabic{subsection}}
+\setcounter{figure}{0} \renewcommand{\thefigure}{A.\arabic{figure}}
+\setcounter{table}{0} \renewcommand{\thetable}{A.\arabic{table}}
+
+%-----------------------------------%
+% NOTES
+%-----------------------------------%
+
+%figure
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=100mm,scale=1]{Figure Link}
+%	\caption{Caption}
+%\end{figure}
+
+%table
+%\begin{table}[H]
+%	\centering
+%	\caption{Caption}
+%	\includegraphics[width=100mm,scale=1]{Table Link}
+%\end{table}
+
+%citing (use bibliography.bib)
+%\cite{bibtex name e.g. open_oceans}
 \end{document}

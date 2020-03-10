@@ -1,4 +1,7 @@
 # work-report-latex-sample
+
+*Made a few quality of life changes to the report format - Kevin*
+
 Basic LaTeX sample template for the University of Auckland, Faculty of Engineering work reports.
 
 Text with ! around it is meant to be changed by the author for their specific report.
